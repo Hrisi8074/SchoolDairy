@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace SchoolDairy.Data
+namespace SchoolDairy.Data.Models
 {
     public class Parent
     {
@@ -22,6 +22,9 @@ namespace SchoolDairy.Data
 
         public string? Gender { get; set; }
 
+        public Student Student { get; set; }
+
+        public int StudentId { get; set; }
         public ICollection<Teacher> Teachers { get; set; } = new HashSet<Teacher>();
 
     }
