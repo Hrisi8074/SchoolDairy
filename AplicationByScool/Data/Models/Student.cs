@@ -1,39 +1,48 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using SchoolDairy.Data.Enums;
+using static SchoolDairy.Data.DataConstants.Student;
 
 namespace SchoolDairy.Data.Models
 {
     public class Student
     {
+
+        public Student()
+        {
+            Parents = new List<Parent>();
+            Teachers = new List<Teacher>();
+        }
+
         public int Id { get; set; }
 
         [Required]
-        public string FirstName { get; set; } = null!;
+        [MaxLength(FirstNameStudentMaxLenght)]
+        public string FirstName { get; set; } 
 
         [Required]
-        public string MiddleName { get; set; } = null!;
+        [MaxLength(MiddleNameStudentMaxLenght)]
+        public string MiddleName { get; set; } 
 
         [Required]
-
-        public string LastName { get; set; } = null!;
-
-        [Required]
-
-        public string Classroom { get; set; } = null!;
+        [MaxLength(LastNameStudentMaxLenght)]
+        public string LastName { get; set; } 
 
         [Required]
+        public string Classroom { get; set; }
 
+        [Required]
         public int Number { get; set; }
 
         [Required]
 
-        public string FormOfTraining { get; set; } = null!;
+        public string FormOfTraining { get; set; } 
 
         [Required]
-        public string Specialty { get; set; } = null!;
+        public Speciality Specialty { get; set; }
 
-        public virtual ICollection<Parent> Parents { get; set; } = new HashSet<Parent>();
+        public virtual ICollection<Parent> Parents { get; set; } 
 
-        public virtual ICollection<Teacher> Teachers { get; set; } = new HashSet<Teacher>();
+        public virtual ICollection<Teacher> Teachers { get; set; } 
 
     }
 }

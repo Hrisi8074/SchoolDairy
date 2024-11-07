@@ -4,16 +4,22 @@ namespace SchoolDairy.Data.Models
 {
     public class Subject
     {
+
+        
+
         public int Id { get; set; }
 
         [Required]
-
         public string Name { get; set; }
 
+        public Student Student { get; set; }
 
+        public int StudentId { get; set; }
 
-        public virtual ICollection<Student> Students { get; set; } = new HashSet<Student>();
+        public virtual Teacher Teacher { get; set; }
 
-        public virtual ICollection<Teacher> Teachers { get; set; } = new HashSet<Teacher>();
+        public int TeacherId { get; set; }
+
+        
     }
 }
