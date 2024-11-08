@@ -4,12 +4,8 @@ using static SchoolDairy.Data.DataConstants.Parent;
 namespace SchoolDairy.Data.Models
 {
     public class Parent
-    {
-        public Parent()
-        {
-            Teachers = new List<Teacher>();
-        }
-
+    {       
+        [Key]
         public int Id { get; set; }
 
         [Required]
@@ -32,8 +28,6 @@ namespace SchoolDairy.Data.Models
 
         public virtual Student Student { get; set; }
 
-        public int StudentId { get; set; }
-        public ICollection<Teacher> Teachers { get; set; }
-
+        public int StudentId { get; set; }  
     }
 }

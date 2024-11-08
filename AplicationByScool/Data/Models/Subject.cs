@@ -4,9 +4,7 @@ namespace SchoolDairy.Data.Models
 {
     public class Subject
     {
-
-        
-
+        [Key]
         public int Id { get; set; }
 
         [Required]
@@ -19,7 +17,5 @@ namespace SchoolDairy.Data.Models
         public virtual Teacher Teacher { get; set; }
 
         public int TeacherId { get; set; }
-
-        
     }
 }

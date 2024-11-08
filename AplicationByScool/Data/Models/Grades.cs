@@ -5,12 +5,11 @@ namespace SchoolDairy.Data.Models
 {
     public class Grades
     {
-
-        public Grades()
+ public Grades()
         {
             Subjects = new List<Subject>();
         }
-
+        [Key]
         public int Id { get; set; }
 
         [Required]
@@ -22,9 +21,13 @@ namespace SchoolDairy.Data.Models
 
         public DateTime Introduced {  get; set; }
 
-        public virtual Teacher Teachers { get; set; }
+        public virtual Teacher Teacher { get; set; }
 
         public int TeacherId { get; set; }
+
+        public virtual Student Student { get; set; }
+
+        public int StudentId { get; set; }
 
         public virtual ICollection<Subject> Subjects { get; set; }
     }

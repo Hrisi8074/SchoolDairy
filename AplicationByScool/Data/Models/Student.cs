@@ -6,13 +6,11 @@ namespace SchoolDairy.Data.Models
 {
     public class Student
     {
-
         public Student()
         {
-            Parents = new List<Parent>();
-            Teachers = new List<Teacher>();
+            Gradeses = new List<Grades>(); 
         }
-
+        [Key]
         public int Id { get; set; }
 
         [Required]
@@ -34,15 +32,15 @@ namespace SchoolDairy.Data.Models
         public int Number { get; set; }
 
         [Required]
-
-        public string FormOfTraining { get; set; } 
+         public string FormOfTraining { get; set; } 
 
         [Required]
         public Speciality Specialty { get; set; }
 
-        public virtual ICollection<Parent> Parents { get; set; } 
+        public int ParentId { get; set; }
 
-        public virtual ICollection<Teacher> Teachers { get; set; } 
+        public virtual Parent Parent { get; set; }
+        public virtual ICollection<Grades> Gradeses { get; set; }
 
     }
 }

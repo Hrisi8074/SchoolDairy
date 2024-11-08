@@ -8,6 +8,7 @@ namespace SchoolDairy.Data.Models
         {
             Students = new List<Student>();
         }
+        [Key]
         public int Id { get; set; }
 
         [Required]
@@ -30,12 +31,10 @@ namespace SchoolDairy.Data.Models
 
         public string ClassTeacher { get; set; }
 
+        public int GradesId { get; set; }
+
+        public virtual Grades Grades { get; set; }
+
         public virtual ICollection<Student> Students { get; set; }
-
-
-
-
-
-
     }
 }

@@ -5,12 +5,12 @@ namespace SchoolDairy.Data.Models
 {
     public class Employee
     {
-
         public Employee()
         {
            Teachers = new List<Teacher>();
            Students = new List<Student>(); 
         }
+        [Key]
         public int Id { get; set; }
 
         [Required]
@@ -24,8 +24,5 @@ namespace SchoolDairy.Data.Models
         public string Email { get; set; } = null!;
         public virtual ICollection<Teacher> Teachers { get; set; }
         public virtual ICollection<Student> Students { get; set; }
-
-
-
     }
 }
