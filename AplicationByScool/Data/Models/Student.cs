@@ -11,39 +11,39 @@ namespace SchoolDairy.Data.Models
             Gradeses = new HashSet<Grades>(); 
         }
         [Key]
-        public int StudentId { get; set; }
+        public int Id { get; set; }
 
         [Required]
         [MaxLength(FirstNameStudentMaxLenght)]
-        public string FirstName { get; set; } 
+        public string FirstName { get; set; } = null!;
 
         [Required]
         [MaxLength(MiddleNameStudentMaxLenght)]
-        public string MiddleName { get; set; } 
+        public string MiddleName { get; set; } = null!;
 
         [Required]
         [MaxLength(LastNameStudentMaxLenght)]
-        public string LastName { get; set; } 
+        public string LastName { get; set; } = null!;
 
         [Required]
-        public string Classroom { get; set; }
+        public string Classroom { get; set; } = null!;
 
         [Required]
         public int Number { get; set; }
 
         [Required]
-         public string FormOfTraining { get; set; } 
+         public string FormOfTraining { get; set; } = null!;
 
         [Required]
         public Speciality Specialty { get; set; }
 
         public int ParentId { get; set; }
 
-        public virtual Parent Parent { get; set; }
+        public virtual Parent Parent { get; set; } = null!;
 
         public int TeacherId { get; set; }
 
-        public virtual Teacher Teacher { get; set; }
+        public virtual Teacher Teacher { get; set; } = null!;
         public virtual ICollection<Grades> Gradeses { get; set; }
 
 

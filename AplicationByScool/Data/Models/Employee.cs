@@ -11,7 +11,7 @@ namespace SchoolDairy.Data.Models
            Students = new HashSet<Student>(); 
         }
         [Key]
-        public int EmployeeId { get; set; }
+        public int Id { get; set; }
 
         [Required]
         [MaxLength(FirstNameEmployeeMaxLenght)]

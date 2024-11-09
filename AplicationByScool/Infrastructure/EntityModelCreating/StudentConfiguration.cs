@@ -11,7 +11,7 @@ namespace SchoolDairy.Infrastructure.EntityModelCreating
             builder
                 .HasOne(s => s.Parent)
                 .WithMany(s => s.Students)
-                .HasForeignKey(s => s.StudentId)
+                .HasForeignKey(s => s.Id)
                 .OnDelete(DeleteBehavior.Restrict);
 
             builder.HasOne(s=>s.Teacher)

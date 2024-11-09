@@ -10,21 +10,21 @@ namespace SchoolDairy.Data.Models
             Students = new HashSet<Student>();
         }
         [Key]
-        public int ParentId { get; set; }
+        public int Id { get; set; }
 
         [Required]
         [MaxLength(FirstNameParentMaxLenght)]
-        public string FirstName { get; set; }
+        public string FirstName { get; set; } = null!;
 
         [Required]
         [MaxLength(LastNameParentMaxLenght)]
-        public string LastName { get; set; }
+        public string LastName { get; set; } = null!;
 
         [Required]
-        public string PhoneNumber { get; set; }
+        public string PhoneNumber { get; set; } = null!;
 
         [Required]
-        public string Email { get; set; }
+        public string Email { get; set; } = null!;
 
         public string? UserName { get; set; }
 

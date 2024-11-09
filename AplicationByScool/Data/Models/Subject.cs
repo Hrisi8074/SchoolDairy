@@ -12,16 +12,16 @@ namespace SchoolDairy.Data.Models
         }
 
         [Key]
-        public int SubjectId { get; set; }
+        public int Id { get; set; }
 
         [Required]
-        public string Name { get; set; }
+        public string Name { get; set; } = null!;
 
-        public Student Student { get; set; }
+        public Student Student { get; set; } = null!;
 
-        public int StudentId { get; set; }
+        public int StudentId { get; set; } 
 
-        public virtual Teacher Teacher { get; set; }
+        public virtual Teacher Teacher { get; set; } = null!;
 
         public int TeacherId { get; set; }
 
