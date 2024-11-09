@@ -5,12 +5,13 @@ namespace SchoolDairy.Data.Models
 {
     public class Grades
     {
- public Grades()
+    public Grades()
         {
-            Subjects = new List<Subject>();
+           
+            SubjectGrades = new HashSet<SubjectGrades>();
         }
         [Key]
-        public int Id { get; set; }
+        public int GradesId { get; set; }
 
         [Required]
         public int Grade { get; set; }
@@ -19,16 +20,15 @@ namespace SchoolDairy.Data.Models
 
         public TypeGrades Type { get; set; }
 
-        public DateTime Introduced {  get; set; }
-
-        public virtual Teacher Teacher { get; set; }
-
-        public int TeacherId { get; set; }
+        public int StudentId { get; set; }
 
         public virtual Student Student { get; set; }
 
-        public int StudentId { get; set; }
+        public int SubjectId { get; set; }
 
-        public virtual ICollection<Subject> Subjects { get; set; }
+        public virtual Subject Subject { get; set; }
+        public DateTime Introduced { get; set; }
+       
+        public virtual ICollection<SubjectGrades> SubjectGrades { get; set; }
     }
 }

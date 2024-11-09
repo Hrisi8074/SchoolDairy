@@ -8,10 +8,10 @@ namespace SchoolDairy.Data.Models
     {
         public Student()
         {
-            Gradeses = new List<Grades>(); 
+            Gradeses = new HashSet<Grades>(); 
         }
         [Key]
-        public int Id { get; set; }
+        public int StudentId { get; set; }
 
         [Required]
         [MaxLength(FirstNameStudentMaxLenght)]
@@ -40,7 +40,13 @@ namespace SchoolDairy.Data.Models
         public int ParentId { get; set; }
 
         public virtual Parent Parent { get; set; }
+
+        public int TeacherId { get; set; }
+
+        public virtual Teacher Teacher { get; set; }
         public virtual ICollection<Grades> Gradeses { get; set; }
+
+
 
     }
 }

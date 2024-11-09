@@ -7,11 +7,11 @@ namespace SchoolDairy.Data.Models
     {
         public Employee()
         {
-           Teachers = new List<Teacher>();
-           Students = new List<Student>(); 
+           Teachers = new HashSet<Teacher>();
+           Students = new HashSet<Student>(); 
         }
         [Key]
-        public int Id { get; set; }
+        public int EmployeeId { get; set; }
 
         [Required]
         [MaxLength(FirstNameEmployeeMaxLenght)]

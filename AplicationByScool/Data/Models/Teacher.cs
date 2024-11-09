@@ -6,10 +6,10 @@ namespace SchoolDairy.Data.Models
     {
         public Teacher()
         {
-            Students = new List<Student>();
+            Students = new HashSet<Student>();
         }
         [Key]
-        public int Id { get; set; }
+        public int TeacherId { get; set; }
 
         [Required]
         [MaxLength(FirstNameStudentMaxLenght)]
@@ -31,10 +31,8 @@ namespace SchoolDairy.Data.Models
 
         public string ClassTeacher { get; set; }
 
-        public int GradesId { get; set; }
-
-        public virtual Grades Grades { get; set; }
-
-        public virtual ICollection<Student> Students { get; set; }
+       public virtual ICollection<Student> Students { get; set; }
+      
+       
     }
 }

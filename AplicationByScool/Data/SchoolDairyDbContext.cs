@@ -4,6 +4,7 @@ namespace SchoolDairy.Data
     using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore;
     using SchoolDairy.Data.Models;
+    using SchoolDairy.Infrastructure.EntityModelCreating;
 
     public class SchoolDairyDbContext : IdentityDbContext
     {
@@ -22,5 +23,17 @@ namespace SchoolDairy.Data
         public DbSet<SubjectGrades> SubjectGrades { get; set; }
 
         public DbSet<Teacher> Teachers { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.ApplyConfiguration(new GradesConfiguration());
+            modelBuilder.ApplyConfiguration(new ParentConfiguration());
+            modelBuilder.ApplyConfiguration(new StudentConfiguration());
+            modelBuilder.ApplyConfiguration(new SubjectGradesConfiguration());
+            modelBuilder.ApplyConfiguration(new TeacherConfiguration());
+           
+
+            base.OnModelCreating(modelBuilder);
+        }
     }
 }
