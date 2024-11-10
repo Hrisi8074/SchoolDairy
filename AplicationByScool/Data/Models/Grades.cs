@@ -5,9 +5,9 @@ namespace SchoolDairy.Data.Models
 {
     public class Grades
     {
-    public Grades()
+
+        public Grades()
         {
-           
             SubjectGrades = new HashSet<SubjectGrades>();
         }
         [Key]
@@ -28,7 +28,7 @@ namespace SchoolDairy.Data.Models
 
         public virtual Subject Subject { get; set; } = null!;
         public DateTime Introduced { get; set; }
-       
+
         public virtual ICollection<SubjectGrades> SubjectGrades { get; set; }
     }
 }

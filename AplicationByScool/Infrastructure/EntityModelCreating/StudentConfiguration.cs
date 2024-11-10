@@ -8,11 +8,7 @@ namespace SchoolDairy.Infrastructure.EntityModelCreating
     {
         public void Configure(EntityTypeBuilder<Student> builder)
         {
-            builder
-                .HasOne(s => s.Parent)
-                .WithMany(s => s.Students)
-                .HasForeignKey(s => s.Id)
-                .OnDelete(DeleteBehavior.Restrict);
+           
 
             builder.HasOne(s=>s.Teacher)
                 .WithMany(s => s.Students)

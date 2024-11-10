@@ -5,11 +5,7 @@ namespace SchoolDairy.Data.Models
 {
     public class Employee
     {
-        public Employee()
-        {
-           Teachers = new HashSet<Teacher>();
-           Students = new HashSet<Student>(); 
-        }
+       
         [Key]
         public int Id { get; set; }
 
@@ -22,7 +18,9 @@ namespace SchoolDairy.Data.Models
         public string LastName { get; set; } = null!;
 
         public string Email { get; set; } = null!;
-        public virtual ICollection<Teacher> Teachers { get; set; }
-        public virtual ICollection<Student> Students { get; set; }
+       
+        public int TeacherId { get; set; }
+
+        public virtual Teacher Teacher { get; set; } = null!;
     }
 }

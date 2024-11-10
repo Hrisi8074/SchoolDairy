@@ -1,3 +1,7 @@
+using Microsoft.EntityFrameworkCore;
+using SchoolDairy.Data;
+using System;
+
 namespace SchoolDairy
 {
     public class Program
@@ -5,6 +9,12 @@ namespace SchoolDairy
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+
+
+            builder.Services.AddDbContext<SchoolDairyDbContext>(options =>
+            {
+                options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+            });
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
