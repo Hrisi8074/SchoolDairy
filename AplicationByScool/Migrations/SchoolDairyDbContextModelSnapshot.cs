@@ -220,33 +220,6 @@ namespace SchoolDairy.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("SchoolDairy.Data.Models.Employee", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
-
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Employees");
-                });
-
             modelBuilder.Entity("SchoolDairy.Data.Models.Grades", b =>
                 {
                     b.Property<int>("Id")
@@ -261,15 +234,10 @@ namespace SchoolDairy.Migrations
                     b.Property<int>("StudentId")
                         .HasColumnType("int");
 
-                    b.Property<int>("SubjectId")
-                        .HasColumnType("int");
-
                     b.Property<int>("Type")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("StudentId");
 
                     b.ToTable("Grades");
                 });
@@ -320,14 +288,14 @@ namespace SchoolDairy.Migrations
             modelBuilder.Entity("SchoolDairy.Data.Models.Student", b =>
                 {
                     b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Classroom")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
-
-                    b.Property<int?>("EmployeeId")
-                        .HasColumnType("int");
 
                     b.Property<string>("FirstName")
                         .IsRequired()
@@ -365,10 +333,10 @@ namespace SchoolDairy.Migrations
                     b.HasIndex("Classroom")
                         .IsUnique();
 
-                    b.HasIndex("EmployeeId");
-
                     b.HasIndex("Number")
                         .IsUnique();
+
+                    b.HasIndex("ParentId");
 
                     b.HasIndex("Specialty")
                         .IsUnique();
@@ -405,6 +373,21 @@ namespace SchoolDairy.Migrations
                     b.ToTable("Subjects");
                 });
 
+            modelBuilder.Entity("SchoolDairy.Data.Models.SubjectGrades", b =>
+                {
+                    b.Property<int>("SubjectId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("GradeId")
+                        .HasColumnType("int");
+
+                    b.HasKey("SubjectId", "GradeId");
+
+                    b.HasIndex("GradeId");
+
+                    b.ToTable("SubjectGrades");
+                });
+
             modelBuilder.Entity("SchoolDairy.Data.Models.Teacher", b =>
                 {
                     b.Property<int>("Id")
@@ -420,9 +403,6 @@ namespace SchoolDairy.Migrations
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
-
-                    b.Property<int?>("EmployeeId")
-                        .HasColumnType("int");
 
                     b.Property<string>("FirstName")
                         .IsRequired()
@@ -450,8 +430,6 @@ namespace SchoolDairy.Migrations
 
                     b.HasIndex("Email")
                         .IsUnique();
-
-                    b.HasIndex("EmployeeId");
 
                     b.HasIndex("PhoneNumber")
                         .IsUnique();
@@ -512,33 +490,21 @@ namespace SchoolDairy.Migrations
 
             modelBuilder.Entity("SchoolDairy.Data.Models.Grades", b =>
                 {
-                    b.HasOne("SchoolDairy.Data.Models.Subject", "Subject")
-                        .WithMany("Grades")
+                    b.HasOne("SchoolDairy.Data.Models.Student", "Student")
+                        .WithMany("Gradeses")
                         .HasForeignKey("Id")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("SchoolDairy.Data.Models.Student", "Student")
-                        .WithMany("Gradeses")
-                        .HasForeignKey("StudentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("Student");
-
-                    b.Navigation("Subject");
                 });
 
             modelBuilder.Entity("SchoolDairy.Data.Models.Student", b =>
                 {
-                    b.HasOne("SchoolDairy.Data.Models.Employee", null)
-                        .WithMany("Students")
-                        .HasForeignKey("EmployeeId");
-
                     b.HasOne("SchoolDairy.Data.Models.Parent", "Parent")
-                        .WithMany("Students")
-                        .HasForeignKey("Id")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .WithMany()
+                        .HasForeignKey("ParentId")
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("SchoolDairy.Data.Models.Teacher", "Teacher")
@@ -571,23 +537,28 @@ namespace SchoolDairy.Migrations
                     b.Navigation("Teacher");
                 });
 
-            modelBuilder.Entity("SchoolDairy.Data.Models.Teacher", b =>
+            modelBuilder.Entity("SchoolDairy.Data.Models.SubjectGrades", b =>
                 {
-                    b.HasOne("SchoolDairy.Data.Models.Employee", null)
-                        .WithMany("Teachers")
-                        .HasForeignKey("EmployeeId");
+                    b.HasOne("SchoolDairy.Data.Models.Grades", "Grades")
+                        .WithMany("SubjectGrades")
+                        .HasForeignKey("GradeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SchoolDairy.Data.Models.Subject", "Subject")
+                        .WithMany("SubjectGrades")
+                        .HasForeignKey("SubjectId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Grades");
+
+                    b.Navigation("Subject");
                 });
 
-            modelBuilder.Entity("SchoolDairy.Data.Models.Employee", b =>
+            modelBuilder.Entity("SchoolDairy.Data.Models.Grades", b =>
                 {
-                    b.Navigation("Students");
-
-                    b.Navigation("Teachers");
-                });
-
-            modelBuilder.Entity("SchoolDairy.Data.Models.Parent", b =>
-                {
-                    b.Navigation("Students");
+                    b.Navigation("SubjectGrades");
                 });
 
             modelBuilder.Entity("SchoolDairy.Data.Models.Student", b =>
@@ -597,7 +568,7 @@ namespace SchoolDairy.Migrations
 
             modelBuilder.Entity("SchoolDairy.Data.Models.Subject", b =>
                 {
-                    b.Navigation("Grades");
+                    b.Navigation("SubjectGrades");
                 });
 
             modelBuilder.Entity("SchoolDairy.Data.Models.Teacher", b =>

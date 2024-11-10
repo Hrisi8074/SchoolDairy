@@ -2,13 +2,7 @@
 {
     public static class DataConstants
     {
-        public static class Employee
-        {
-            public const int FirstNameEmployeeMinLenght = 5;
-            public const int FirstNameEmployeeMaxLenght = 20;
-            public const int LastNameEmployeeMinLenght = 10;
-            public const int LastNameEmployeeMaxLenght = 50;
-        }
+      
         public static class Parent
         {
             public const int FirstNameParentMinLenght = 10;

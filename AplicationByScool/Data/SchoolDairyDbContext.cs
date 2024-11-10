@@ -15,7 +15,7 @@ namespace SchoolDairy.Data
         }
         public SchoolDairyDbContext(DbContextOptions<SchoolDairyDbContext> options) : base(options) { }
 
-        public DbSet<Employee> Employees { get; set; } 
+       
 
         public DbSet<Grades> Grades { get; set; } 
 
@@ -31,7 +31,7 @@ namespace SchoolDairy.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.ApplyConfiguration(new GradesConfiguration());
+           
             modelBuilder.ApplyConfiguration(new ParentConfiguration());
             modelBuilder.ApplyConfiguration(new StudentConfiguration());
             modelBuilder.ApplyConfiguration(new SubjectGradesConfiguration());

@@ -6,10 +6,7 @@ namespace SchoolDairy.Data.Models
 {
     public class Student
     {
-        public Student()
-        {
-            Gradeses = new HashSet<Grades>(); 
-        }
+        
         [Key]
         public int Id { get; set; }
 
@@ -44,9 +41,11 @@ namespace SchoolDairy.Data.Models
         public int TeacherId { get; set; }
 
         public virtual Teacher Teacher { get; set; } = null!;
-        public virtual ICollection<Grades> Gradeses { get; set; }
 
 
+        public int GradesId { get; set; }
+
+        public virtual Grades Grades{ get; set; } = null!;
 
     }
 }
