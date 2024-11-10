@@ -12,8 +12,8 @@ using SchoolDairy.Data;
 namespace SchoolDairy.Migrations
 {
     [DbContext(typeof(SchoolDairyDbContext))]
-    [Migration("20241110201046_Createdatabase")]
-    partial class Createdatabase
+    [Migration("20241110204016_CreateDatabase")]
+    partial class CreateDatabase
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -226,7 +226,10 @@ namespace SchoolDairy.Migrations
             modelBuilder.Entity("SchoolDairy.Data.Models.Grades", b =>
                 {
                     b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int>("Grade")
                         .HasColumnType("int");
@@ -241,6 +244,8 @@ namespace SchoolDairy.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("StudentId");
 
                     b.ToTable("Grades");
                 });
@@ -494,9 +499,9 @@ namespace SchoolDairy.Migrations
             modelBuilder.Entity("SchoolDairy.Data.Models.Grades", b =>
                 {
                     b.HasOne("SchoolDairy.Data.Models.Student", "Student")
-                        .WithMany("Gradeses")
-                        .HasForeignKey("Id")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .WithMany("Grades")
+                        .HasForeignKey("StudentId")
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Student");
@@ -505,9 +510,9 @@ namespace SchoolDairy.Migrations
             modelBuilder.Entity("SchoolDairy.Data.Models.Student", b =>
                 {
                     b.HasOne("SchoolDairy.Data.Models.Parent", "Parent")
-                        .WithMany()
+                        .WithMany("Students")
                         .HasForeignKey("ParentId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("SchoolDairy.Data.Models.Teacher", "Teacher")
@@ -564,9 +569,14 @@ namespace SchoolDairy.Migrations
                     b.Navigation("SubjectGrades");
                 });
 
+            modelBuilder.Entity("SchoolDairy.Data.Models.Parent", b =>
+                {
+                    b.Navigation("Students");
+                });
+
             modelBuilder.Entity("SchoolDairy.Data.Models.Student", b =>
                 {
-                    b.Navigation("Gradeses");
+                    b.Navigation("Grades");
                 });
 
             modelBuilder.Entity("SchoolDairy.Data.Models.Subject", b =>

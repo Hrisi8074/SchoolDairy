@@ -15,6 +15,7 @@ namespace SchoolDairy.Infrastructure.EntityModelCreating
                 .HasIndex(t => t.Email)
                 .IsUnique();
            
+           
 
         }   
     }

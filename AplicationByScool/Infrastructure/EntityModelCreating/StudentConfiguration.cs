@@ -14,8 +14,12 @@ namespace SchoolDairy.Infrastructure.EntityModelCreating
                 .WithMany(s => s.Students)
                 .HasForeignKey(s => s.TeacherId)
                 .OnDelete(DeleteBehavior.Restrict);
+            builder.HasOne(s => s.Parent)
+              .WithMany(s => s.Students)
+              .HasForeignKey(s => s.ParentId)
+              .OnDelete(DeleteBehavior.Restrict);
 
-           builder
+            builder
                 .HasIndex(s => s.Classroom)
                 .IsUnique();
            builder

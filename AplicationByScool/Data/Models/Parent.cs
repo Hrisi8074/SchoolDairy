@@ -5,7 +5,10 @@ namespace SchoolDairy.Data.Models
 {
     public class Parent
     {
-        
+        public Parent()
+        {
+            Students = new List<Student>();
+        }
         [Key]
         public int Id { get; set; }
 
@@ -27,7 +30,7 @@ namespace SchoolDairy.Data.Models
 
         public string? Gender { get; set; }
 
+        public virtual ICollection<Student> Students { get; set; } = null!;
 
-       
     }
 }

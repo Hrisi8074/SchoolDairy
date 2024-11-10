@@ -25,7 +25,9 @@ namespace SchoolDairy.Data
 
         public DbSet<Subject> Subjects { get; set; }
 
-        public DbSet<SubjectGrades> SubjectGrades { get; set; }
+      
+
+        public DbSet<StudentGrades>StudentGrades { get; set; }
 
         public DbSet<Teacher> Teachers { get; set; }
 
@@ -34,8 +36,9 @@ namespace SchoolDairy.Data
            
             modelBuilder.ApplyConfiguration(new ParentConfiguration());
             modelBuilder.ApplyConfiguration(new StudentConfiguration());
-            modelBuilder.ApplyConfiguration(new SubjectGradesConfiguration());
+          
             modelBuilder.ApplyConfiguration(new TeacherConfiguration());
+            modelBuilder.ApplyConfiguration(new StudentGradesConfiguration());
            
 
             base.OnModelCreating(modelBuilder);
