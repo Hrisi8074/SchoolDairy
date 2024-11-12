@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using SchoolDairy.Data;
 using System;
+using Microsoft.AspNetCore.Identity;
 
 namespace SchoolDairy
 {
@@ -15,6 +16,8 @@ namespace SchoolDairy
             {
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
             });
+
+            builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<SchoolDairyDbContext>();
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();

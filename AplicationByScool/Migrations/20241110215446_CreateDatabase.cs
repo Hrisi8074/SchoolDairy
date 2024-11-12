@@ -51,6 +51,21 @@ namespace SchoolDairy.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Grades",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Grade = table.Column<int>(type: "int", nullable: false),
+                    Type = table.Column<int>(type: "int", nullable: false),
+                    Introduced = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Grades", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Parents",
                 columns: table => new
                 {
@@ -226,21 +241,23 @@ namespace SchoolDairy.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Grades",
+                name: "StudentGrades",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Grade = table.Column<int>(type: "int", nullable: false),
-                    Type = table.Column<int>(type: "int", nullable: false),
                     StudentId = table.Column<int>(type: "int", nullable: false),
-                    Introduced = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    GradesId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Grades", x => x.Id);
+                    table.PrimaryKey("PK_StudentGrades", x => new { x.StudentId, x.GradesId });
                     table.ForeignKey(
-                        name: "FK_Grades_Students_StudentId",
+                        name: "FK_StudentGrades_Grades_GradesId",
+                        column: x => x.GradesId,
+                        principalTable: "Grades",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_StudentGrades_Students_StudentId",
                         column: x => x.StudentId,
                         principalTable: "Students",
                         principalColumn: "Id",
@@ -270,30 +287,6 @@ namespace SchoolDairy.Migrations
                         name: "FK_Subjects_Teachers_TeacherId",
                         column: x => x.TeacherId,
                         principalTable: "Teachers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "SubjectGrades",
-                columns: table => new
-                {
-                    SubjectId = table.Column<int>(type: "int", nullable: false),
-                    GradeId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_SubjectGrades", x => new { x.SubjectId, x.GradeId });
-                    table.ForeignKey(
-                        name: "FK_SubjectGrades_Grades_GradeId",
-                        column: x => x.GradeId,
-                        principalTable: "Grades",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_SubjectGrades_Subjects_SubjectId",
-                        column: x => x.SubjectId,
-                        principalTable: "Subjects",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -338,11 +331,6 @@ namespace SchoolDairy.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Grades_StudentId",
-                table: "Grades",
-                column: "StudentId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Parents_Email",
                 table: "Parents",
                 column: "Email",
@@ -353,6 +341,11 @@ namespace SchoolDairy.Migrations
                 table: "Parents",
                 column: "PhoneNumber",
                 unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_StudentGrades_GradesId",
+                table: "StudentGrades",
+                column: "GradesId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Students_Classroom",
@@ -381,11 +374,6 @@ namespace SchoolDairy.Migrations
                 name: "IX_Students_TeacherId",
                 table: "Students",
                 column: "TeacherId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_SubjectGrades_GradeId",
-                table: "SubjectGrades",
-                column: "GradeId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Subjects_StudentId",
@@ -435,7 +423,10 @@ namespace SchoolDairy.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "SubjectGrades");
+                name: "StudentGrades");
+
+            migrationBuilder.DropTable(
+                name: "Subjects");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
@@ -445,9 +436,6 @@ namespace SchoolDairy.Migrations
 
             migrationBuilder.DropTable(
                 name: "Grades");
-
-            migrationBuilder.DropTable(
-                name: "Subjects");
 
             migrationBuilder.DropTable(
                 name: "Students");

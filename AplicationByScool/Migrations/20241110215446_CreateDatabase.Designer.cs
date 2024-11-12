@@ -12,7 +12,7 @@ using SchoolDairy.Data;
 namespace SchoolDairy.Migrations
 {
     [DbContext(typeof(SchoolDairyDbContext))]
-    [Migration("20241110204016_CreateDatabase")]
+    [Migration("20241110215446_CreateDatabase")]
     partial class CreateDatabase
     {
         /// <inheritdoc />
@@ -237,15 +237,10 @@ namespace SchoolDairy.Migrations
                     b.Property<DateTime>("Introduced")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("StudentId")
-                        .HasColumnType("int");
-
                     b.Property<int>("Type")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("StudentId");
 
                     b.ToTable("Grades");
                 });
@@ -354,6 +349,21 @@ namespace SchoolDairy.Migrations
                     b.ToTable("Students");
                 });
 
+            modelBuilder.Entity("SchoolDairy.Data.Models.StudentGrades", b =>
+                {
+                    b.Property<int>("StudentId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("GradesId")
+                        .HasColumnType("int");
+
+                    b.HasKey("StudentId", "GradesId");
+
+                    b.HasIndex("GradesId");
+
+                    b.ToTable("StudentGrades");
+                });
+
             modelBuilder.Entity("SchoolDairy.Data.Models.Subject", b =>
                 {
                     b.Property<int>("Id")
@@ -379,21 +389,6 @@ namespace SchoolDairy.Migrations
                     b.HasIndex("TeacherId");
 
                     b.ToTable("Subjects");
-                });
-
-            modelBuilder.Entity("SchoolDairy.Data.Models.SubjectGrades", b =>
-                {
-                    b.Property<int>("SubjectId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("GradeId")
-                        .HasColumnType("int");
-
-                    b.HasKey("SubjectId", "GradeId");
-
-                    b.HasIndex("GradeId");
-
-                    b.ToTable("SubjectGrades");
                 });
 
             modelBuilder.Entity("SchoolDairy.Data.Models.Teacher", b =>
@@ -496,17 +491,6 @@ namespace SchoolDairy.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("SchoolDairy.Data.Models.Grades", b =>
-                {
-                    b.HasOne("SchoolDairy.Data.Models.Student", "Student")
-                        .WithMany("Grades")
-                        .HasForeignKey("StudentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Student");
-                });
-
             modelBuilder.Entity("SchoolDairy.Data.Models.Student", b =>
                 {
                     b.HasOne("SchoolDairy.Data.Models.Parent", "Parent")
@@ -526,6 +510,25 @@ namespace SchoolDairy.Migrations
                     b.Navigation("Teacher");
                 });
 
+            modelBuilder.Entity("SchoolDairy.Data.Models.StudentGrades", b =>
+                {
+                    b.HasOne("SchoolDairy.Data.Models.Grades", "Grades")
+                        .WithMany("StudentGrades")
+                        .HasForeignKey("GradesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SchoolDairy.Data.Models.Student", "Student")
+                        .WithMany("StudentGrades")
+                        .HasForeignKey("StudentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Grades");
+
+                    b.Navigation("Student");
+                });
+
             modelBuilder.Entity("SchoolDairy.Data.Models.Subject", b =>
                 {
                     b.HasOne("SchoolDairy.Data.Models.Student", "Student")
@@ -545,28 +548,9 @@ namespace SchoolDairy.Migrations
                     b.Navigation("Teacher");
                 });
 
-            modelBuilder.Entity("SchoolDairy.Data.Models.SubjectGrades", b =>
-                {
-                    b.HasOne("SchoolDairy.Data.Models.Grades", "Grades")
-                        .WithMany("SubjectGrades")
-                        .HasForeignKey("GradeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("SchoolDairy.Data.Models.Subject", "Subject")
-                        .WithMany("SubjectGrades")
-                        .HasForeignKey("SubjectId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Grades");
-
-                    b.Navigation("Subject");
-                });
-
             modelBuilder.Entity("SchoolDairy.Data.Models.Grades", b =>
                 {
-                    b.Navigation("SubjectGrades");
+                    b.Navigation("StudentGrades");
                 });
 
             modelBuilder.Entity("SchoolDairy.Data.Models.Parent", b =>
@@ -576,12 +560,7 @@ namespace SchoolDairy.Migrations
 
             modelBuilder.Entity("SchoolDairy.Data.Models.Student", b =>
                 {
-                    b.Navigation("Grades");
-                });
-
-            modelBuilder.Entity("SchoolDairy.Data.Models.Subject", b =>
-                {
-                    b.Navigation("SubjectGrades");
+                    b.Navigation("StudentGrades");
                 });
 
             modelBuilder.Entity("SchoolDairy.Data.Models.Teacher", b =>

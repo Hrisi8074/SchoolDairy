@@ -5,8 +5,6 @@ namespace SchoolDairy.Data.Models
     public class Subject
     {
 
-        
-
         [Key]
         public int Id { get; set; }
 
@@ -18,7 +16,6 @@ namespace SchoolDairy.Data.Models
         public int StudentId { get; set; } 
 
         public virtual Teacher Teacher { get; set; } = null!;
-
         public int TeacherId { get; set; }
 
        

@@ -5,7 +5,6 @@ namespace SchoolDairy.Data.Models
 {
     public class Grades
     {
-
         public Grades()
         {
            
@@ -18,15 +17,9 @@ namespace SchoolDairy.Data.Models
         public int Grade { get; set; }
 
         [Required]
-
         public TypeGrades Type { get; set; }
 
-      
-
-     
         public DateTime Introduced { get; set; }
-
-       
 
         public virtual ICollection<StudentGrades> StudentGrades { get; set; }
     }
