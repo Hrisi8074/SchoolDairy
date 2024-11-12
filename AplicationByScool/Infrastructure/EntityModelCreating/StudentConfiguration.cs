@@ -28,9 +28,47 @@ namespace SchoolDairy.Infrastructure.EntityModelCreating
             builder
                 .HasIndex(s=>s.Specialty)
                 .IsUnique();
+        }
+        private IEnumerable<Student> GenerateStudent()
+        {
+            IEnumerable<Student> students = new List<Student>()
+            {
+                new Student()
+                {
+                    FirstName = "Ivan",
+                    MiddleName = "Petrov",
+                    LastName = "Petrov",
+                    Classroom = "11",
+                    Number = (int) 9,
+                    FormOfTraining = "Day",
+                    Specialty = (Data.Enums.Speciality) 1,
+                },
+               new Student()
+                {
+
+                    FirstName = "Ivanka",
+                    MiddleName = "Zheleva",
+                    LastName = "Pekova",
+                    Classroom = "10",
+                    Number = (int) 10,
+                    FormOfTraining = "Day",
+                    Specialty = (Data.Enums.Speciality) 2,
 
 
+                },
+                new Student()
+                {
+                    FirstName = "Zlatan",
+                    MiddleName = "Tihomirov",
+                    LastName = "Hristov",
+                    Classroom = "9",
+                    Number = (int) 12,
+                    FormOfTraining = "Day",
+                    Specialty = (Data.Enums.Speciality) 3,
+                },
+            };
+            return students;
+        }
 
-        }      
     }
 }
