@@ -28,6 +28,7 @@ namespace SchoolDairy.Infrastructure.EntityModelCreating
             builder
                 .HasIndex(s=>s.Specialty)
                 .IsUnique();
+            builder.HasData(this.GenerateStudent());
         }
         private IEnumerable<Student> GenerateStudent()
         {
