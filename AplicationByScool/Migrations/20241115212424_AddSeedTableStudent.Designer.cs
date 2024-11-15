@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SchoolDairy.Data;
 
@@ -11,9 +12,11 @@ using SchoolDairy.Data;
 namespace SchoolDairy.Migrations
 {
     [DbContext(typeof(SchoolDairyDbContext))]
-    partial class SchoolDairyDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241115212424_AddSeedTableStudent")]
+    partial class AddSeedTableStudent
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

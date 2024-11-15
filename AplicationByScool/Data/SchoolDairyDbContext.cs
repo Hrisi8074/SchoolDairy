@@ -5,6 +5,7 @@ namespace SchoolDairy.Data
     using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore;
     using SchoolDairy.Data.Models;
+    using SchoolDairy.Data.Seed;
     using SchoolDairy.Infrastructure.EntityModelCreating;
 
     public class SchoolDairyDbContext : IdentityDbContext<IdentityUser>
@@ -29,6 +30,7 @@ namespace SchoolDairy.Data
             modelBuilder.ApplyConfiguration(new StudentGradesConfiguration());
            
             base.OnModelCreating(modelBuilder);
+            modelBuilder.Seed();
         }
     }
 }

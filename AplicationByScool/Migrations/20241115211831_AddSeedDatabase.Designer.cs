@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SchoolDairy.Data;
 
@@ -11,9 +12,11 @@ using SchoolDairy.Data;
 namespace SchoolDairy.Migrations
 {
     [DbContext(typeof(SchoolDairyDbContext))]
-    partial class SchoolDairyDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241115211831_AddSeedDatabase")]
+    partial class AddSeedDatabase
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -374,47 +377,6 @@ namespace SchoolDairy.Migrations
                     b.HasIndex("TeacherId");
 
                     b.ToTable("Students");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Classroom = "10",
-                            FirstName = "Ivanka",
-                            FormOfTraining = "Day",
-                            LastName = "Pekova",
-                            MiddleName = "Zheleva",
-                            Number = 10,
-                            ParentId = 1,
-                            Specialty = 2,
-                            TeacherId = 1
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Classroom = "8",
-                            FirstName = "Lubo",
-                            FormOfTraining = "Day",
-                            LastName = "Lubomirov",
-                            MiddleName = "Lubomirov",
-                            Number = 14,
-                            ParentId = 2,
-                            Specialty = 3,
-                            TeacherId = 2
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Classroom = "9",
-                            FirstName = "Zlatan",
-                            FormOfTraining = "Day",
-                            LastName = "Hristov",
-                            MiddleName = "Tihomirov",
-                            Number = 12,
-                            ParentId = 3,
-                            Specialty = 1,
-                            TeacherId = 3
-                        });
                 });
 
             modelBuilder.Entity("SchoolDairy.Data.Models.StudentGrades", b =>

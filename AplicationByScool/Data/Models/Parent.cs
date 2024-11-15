@@ -24,9 +24,9 @@ namespace SchoolDairy.Data.Models
         public string PhoneNumber { get; set; } = null!;
 
         [Required]
-        public string EmailAddress { get; set; } = null!;
+        public string EmailAddres { get; set; } = null!;
 
-        public string? UserName { get; set; }
+        public string? UserNameParent { get; set; }
 
         public string? Gender { get; set; }
 
