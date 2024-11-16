@@ -1,0 +1,33 @@
+﻿@using SchoolDairy.Data.Models
+@model IEnumerable<Parent>
+
+<h2>Parent Registration</h2>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Phone Number</th>
+            <th>Email Adress</th>
+            <th>User Name </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Parent parent in Model)
+        {
+            <tr>
+                <td>@parent.FirstName</td>
+                <td>@parent.LastName</td>
+                <td>@parent.PhoneNumber</td>
+                <td>@parent.EmailAddres</td>
+                    <td>@parent.UserNameParent</td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@parent.Id" class="btn btn-info">Details</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a asp-action="Create" class="btn btn-primary">Add New Parent</a>

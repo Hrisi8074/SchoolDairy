@@ -1,0 +1,29 @@
+﻿@model SchoolDairy.Data.Models.Parent
+
+<h2>Add a Registration</h2>
+
+<form asp-action="Create" method="post">
+    <div>
+        <label for="FirstaName">Parent Name</label>
+        <input asp-for="FirstName" class="form-control" />
+    </div>
+    <div>
+        <label for="LastName">Last Name</label>
+        <input asp-for="LastName" class="form-control" />
+    </div>
+    <div>
+        <label for="PhoneNumber">Phone Number</label>
+        <input asp-for="PhoneNumber" type="number" class="form-control" />
+    </div>
+    <div>
+        <label for="EmailAddres">Email Addres</label>
+        <input asp-for="EmailAddres" class="form-control" />
+    </div>
+    <div>
+        <label for="UserNameParent">User Name</label>
+        <input asp-for="UserNameParent" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-primary mt-2">Create Registration</button>
+</form>
+
+<a asp-action="Index">Back to </a>
