@@ -34,5 +34,6 @@ namespace SchoolDairy.Controllers
             this.schoolDairyDbContext.SaveChanges();
             return this.RedirectToAction(nameof(Index));
         }
+       
     }
 }
