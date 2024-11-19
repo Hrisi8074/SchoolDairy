@@ -1,10 +1,11 @@
-using SchoolDairy;
-using Microsoft.AspNetCore.Mvc;
-using System.Diagnostics;
-using SchoolDairy.Models;
 
-namespace SchoolDairy.Controllers
+using System.Diagnostics;
+using Microsoft.AspNetCore.Mvc;
+using SchoolDairy.View;
+
+namespace SchoolDairy.Web.Controllers
 {
+    
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;

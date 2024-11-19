@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.EntityFrameworkCore;
-using SchoolDairy.Data.Models;
 using System.Reflection.Emit;
+using SchoolDairy.Data.Models;
 
 namespace SchoolDairy.Infrastructure.EntityModelCreating
 {

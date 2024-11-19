@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using SchoolDairy.Data.Enums;
-using static SchoolDairy.Data.DataConstants.Student;
+using SchoolDairy.Data.Model.Enums;
+using SchoolDairy.Data.Models;
+using static SchoolDairy.Common.DataConstants.Student;
 
 namespace SchoolDairy.Data.Models
 {
@@ -8,7 +9,7 @@ namespace SchoolDairy.Data.Models
     {
         public Student()
         {
-            StudentGrades = new HashSet< StudentGrades>();
+            StudentGrades = new HashSet<StudentGrades>();
         }
 
         [Key]
@@ -33,7 +34,7 @@ namespace SchoolDairy.Data.Models
         public int Number { get; set; }
 
         [Required]
-         public string FormOfTraining { get; set; } = null!;
+        public string FormOfTraining { get; set; } = null!;
 
         [Required]
         public Speciality Specialty { get; set; }
@@ -47,7 +48,7 @@ namespace SchoolDairy.Data.Models
         public virtual Teacher Teacher { get; set; } = null!;
 
         public virtual ICollection<StudentGrades> StudentGrades { get; set; }
-        
+
 
     }
 }

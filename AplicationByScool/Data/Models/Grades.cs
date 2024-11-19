@@ -1,4 +1,5 @@
-﻿using SchoolDairy.Data.Enums;
+﻿using SchoolDairy.Data.Model;
+using SchoolDairy.Data.Model.Enums;
 using System.ComponentModel.DataAnnotations;
 
 namespace SchoolDairy.Data.Models
@@ -7,7 +8,7 @@ namespace SchoolDairy.Data.Models
     {
         public Grades()
         {
-           
+
             StudentGrades = new HashSet<StudentGrades>();
         }
         [Key]

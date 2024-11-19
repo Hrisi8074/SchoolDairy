@@ -1,5 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using SchoolDairy.Data.Model.Enums;
 using SchoolDairy.Data.Models;
+
 namespace SchoolDairy.Data.Seed
 {
     public static class SeedExtension
@@ -33,7 +35,7 @@ namespace SchoolDairy.Data.Seed
                          EmailAddres = "hhistov@abv.bg"
                      });
 
-            
+
 
             modelBuilder.Entity<Teacher>()
                .HasData(
@@ -71,41 +73,41 @@ namespace SchoolDairy.Data.Seed
               .HasData(
                    new Student
                    {
-                       Id= 1,
+                       Id = 1,
                        ParentId = 1,
                        FirstName = "Ivanka",
                        MiddleName = "Zheleva",
                        LastName = "Pekova",
                        Classroom = "10",
-                       Number = (int)10,
+                       Number = 10,
                        FormOfTraining = "Day",
-                       Specialty = (Data.Enums.Speciality)2,
+                       Specialty = (Speciality)2,
                        TeacherId = 1,
                    },
                    new Student
                    {
-                      Id= 2,
-                       ParentId=2,
+                       Id = 2,
+                       ParentId = 2,
                        FirstName = "Lubo",
                        MiddleName = "Lubomirov",
                        LastName = "Lubomirov",
                        Classroom = "8",
-                       Number = (int)14,
+                       Number = 14,
                        FormOfTraining = "Day",
-                       Specialty = (Data.Enums.Speciality)3,
-                       TeacherId= 2,
+                       Specialty = (Speciality)3,
+                       TeacherId = 2,
                    },
                     new Student
                     {
-                       Id=3,
-                        ParentId=3,
+                        Id = 3,
+                        ParentId = 3,
                         FirstName = "Zlatan",
                         MiddleName = "Tihomirov",
                         LastName = "Hristov",
                         Classroom = "9",
-                        Number = (int)12,
+                        Number = 12,
                         FormOfTraining = "Day",
-                        Specialty = (Data.Enums.Speciality)1,
+                        Specialty = (Speciality)1,
                         TeacherId = 3,
                     });
 

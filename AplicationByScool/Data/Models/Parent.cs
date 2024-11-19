@@ -1,5 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
-using static SchoolDairy.Data.DataConstants.Parent;
+﻿using SchoolDairy.Data.Model;
+using System.ComponentModel.DataAnnotations;
+using static SchoolDairy.Common.DataConstants.Parent;
 
 namespace SchoolDairy.Data.Models
 {

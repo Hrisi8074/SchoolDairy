@@ -1,4 +1,4 @@
-﻿namespace SchoolDairy.Data.Enums
+﻿namespace SchoolDairy.Data.Model.Enums
 {
     public enum Speciality
     {

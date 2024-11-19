@@ -1,4 +1,6 @@
-﻿namespace SchoolDairy.Data.Models
+﻿using SchoolDairy.Data.Models;
+
+namespace SchoolDairy.Data.Models
 {
     public class StudentGrades
     {

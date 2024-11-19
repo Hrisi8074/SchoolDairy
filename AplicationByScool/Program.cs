@@ -1,7 +1,8 @@
 using Microsoft.EntityFrameworkCore;
-using SchoolDairy.Data;
-using System;
+
 using Microsoft.AspNetCore.Identity;
+
+using SchoolDairy.Data;
 
 namespace SchoolDairy
 {

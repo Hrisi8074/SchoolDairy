@@ -13,15 +13,15 @@ namespace SchoolDairy.Data.Models
 
         public Student Student { get; set; } = null!;
 
-        public int StudentId { get; set; } 
+        public int StudentId { get; set; }
 
         public virtual Teacher Teacher { get; set; } = null!;
         public int TeacherId { get; set; }
 
-       
-       
 
 
-       
+
+
+
     }
 }

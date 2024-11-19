@@ -1,9 +1,17 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using SchoolDairy.Data;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using SchoolDairy.Data.Models;
+using SchoolDairy.Data;
 
-namespace SchoolDairy.Controllers
+
+
+namespace SchoolDairy.Web.Controllers
+
 {
+
+
     public class ParentController : Controller
     {
         private readonly SchoolDairyDbContext schoolDairyDbContext;
@@ -34,6 +42,22 @@ namespace SchoolDairy.Controllers
             this.schoolDairyDbContext.SaveChanges();
             return this.RedirectToAction(nameof(Index));
         }
-       
+        public IActionResult Details(int Id)
+        {
+            bool IsIdValid = true;
+
+            if (!IsIdValid)
+            {
+                return RedirectToAction(nameof(Index));
+            }
+
+            Parent parents = schoolDairyDbContext.Parents
+                .FirstOrDefault(p => p.Id == Id);
+            if (parents == null)
+            {
+                return NotFound();
+            }
+            return View(parents);
+        }
     }
 }

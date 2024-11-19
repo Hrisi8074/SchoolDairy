@@ -1,5 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using static SchoolDairy.Data.DataConstants.Student;
+using static SchoolDairy.Common.DataConstants.Teacher;
 namespace SchoolDairy.Data.Models
 {
     public class Teacher
@@ -12,15 +12,15 @@ namespace SchoolDairy.Data.Models
         public int Id { get; set; }
 
         [Required]
-        [MaxLength(FirstNameStudentMaxLenght)]
+        [MaxLength(FirstNameTeachertMaxLenght)]
         public string FirstName { get; set; } = null!;
 
         [Required]
-        [MaxLength(MiddleNameStudentMaxLenght)]
+        [MaxLength(MiddleNameTeacherMaxLenght)]
         public string MiddleName { get; set; } = null!;
 
         [Required]
-        [MaxLength(LastNameStudentMaxLenght)]
+        [MaxLength(LastNameTeacherMaxLenght)]
         public string LastName { get; set; } = null!;
 
         [Required]
@@ -32,7 +32,7 @@ namespace SchoolDairy.Data.Models
         public string ClassTeacher { get; set; } = null!;
 
         public virtual ICollection<Student> Students { get; set; }
-      
-       
+
+
     }
 }
