@@ -1,19 +1,14 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using SchoolDairy.Data.Models;
 using SchoolDairy.Data;
+using SchoolDairy.Data.Models;
 
-
-
-namespace SchoolDairy.Web.Controllers
-
+namespace SchoolDairy.Controllers
 {
-
-
-    public class ParentController : Controller
+    public class StudenController : Controller
     {
         private readonly SchoolDairyDbContext schoolDairyDbContext;
 
-        public ParentController(SchoolDairyDbContext schoolDairyDbContext)
+        public StudenController(SchoolDairyDbContext schoolDairyDbContext)
         {
             this.schoolDairyDbContext = schoolDairyDbContext;
         }
@@ -21,40 +16,35 @@ namespace SchoolDairy.Web.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            IEnumerable<Parent> parents = this.schoolDairyDbContext
-                 .Parents
+            IEnumerable<Student> students = this.schoolDairyDbContext
+                 .Students
                  .ToList();
 
-            return View(parents);
+            return View(students);
         }
         [HttpGet]
         public IActionResult Create()
-        { 
+        {
             return View();
         }
         [HttpPost]
-        public IActionResult Create(Parent parent)
+        public IActionResult Create(Student student)
         {
-            this.schoolDairyDbContext.Parents.Add(parent);
+            this.schoolDairyDbContext.Students.Add(student);
             this.schoolDairyDbContext.SaveChanges();
             return this.RedirectToAction(nameof(Index));
         }
         public IActionResult Details(int Id)
         {
-            bool IsIdValid = true;
+            
 
-            if (!IsIdValid)
-            {
-                return RedirectToAction(nameof(Index));
-            }
-
-            Parent parents = schoolDairyDbContext.Parents
+            Student student = schoolDairyDbContext.Students
                 .FirstOrDefault(p => p.Id == Id);
-            if (parents == null)
+            if (student == null)
             {
                 return NotFound();
             }
-            return View(parents);
+            return View(student);
         }
     }
 }

@@ -1,0 +1,33 @@
+﻿@model SchoolDairy.Data.Models.Student
+
+<h2>Add Student</h2>
+
+<form asp-action="Create" method="post">
+    <div>
+        <label for="FirstaName">First Name</label>
+        <input asp-for="FirstName" class="form-control" />
+    </div>
+    <div>
+        <label for="MiddleName">Middle Name</label>
+        <input asp-for="MiddleName" class="form-control" />
+    </div>
+    <div>
+        <label for="LastName">Last Name</label>
+        <input asp-for="LastName" class="form-control" />
+    </div>
+    <div>
+        <label for="ClassRoom">ClassRoom</label>
+        <input asp-for="Classroom" class="form-control" />
+    </div>
+    <div>
+        <label for="Number">Number</label>
+        <input asp-for="Number" type="number" class="form-control" />
+    </div>
+    <div>
+        <label for="FormOfTraining">Form Of Training</label>
+        <input asp-for="FormOfTraining" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-primary mt-2">Create Registration</button>
+</form>
+
+<a asp-action="Index">Back to </a>
