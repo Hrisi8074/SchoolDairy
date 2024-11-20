@@ -49,6 +49,6 @@ namespace SchoolDairy.Data.Models
 
         public virtual ICollection<StudentGrades> StudentGrades { get; set; }
 
-
+        
     }
 }

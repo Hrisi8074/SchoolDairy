@@ -4,11 +4,11 @@ using SchoolDairy.Data.Models;
 
 namespace SchoolDairy.Controllers
 {
-    public class StudenController : Controller
+    public class StudentController : Controller
     {
         private readonly SchoolDairyDbContext schoolDairyDbContext;
 
-        public StudenController(SchoolDairyDbContext schoolDairyDbContext)
+        public StudentController(SchoolDairyDbContext schoolDairyDbContext)
         {
             this.schoolDairyDbContext = schoolDairyDbContext;
         }

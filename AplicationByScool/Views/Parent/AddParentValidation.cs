@@ -1,37 +1,25 @@
-﻿using SchoolDairy.Data.Model;
+﻿using System;
 using System.ComponentModel.DataAnnotations;
 using static SchoolDairy.Common.DataConstants.Parent;
-
-namespace SchoolDairy.Data.Models
+using static SchoolDairy.Common.EntityValidationMessages;
+namespace SchoolDairy.Views.Parent
 {
-    public class Parent
+    public class AddParentValidation
     {
-        public Parent()
-        {
-            Students = new HashSet<Student>();
-        }
-        [Key]
-        public int Id { get; set; }
-
-        [Required]
+        [Required(ErrorMessage = FirstNameMessages)]
         [MaxLength(FirstNameParentMaxLenght)]
         public string FirstName { get; set; } = null!;
 
-        [Required]
+        [Required(ErrorMessage = LastNameMessages)]
         [MaxLength(LastNameParentMaxLenght)]
         public string LastName { get; set; } = null!;
 
-        [Required]
+        [Required(ErrorMessage = PhoneNumberMessages)]
         public string PhoneNumber { get; set; } = null!;
 
-        [Required]
+        [Required(ErrorMessage = EmailAddressMessages)]
         public string EmailAddres { get; set; } = null!;
 
         public string? UserNameParent { get; set; }
-
-        public string? Gender { get; set; }
-
-        public virtual ICollection<Student> Students { get; set; } = null!;
-
     }
 }
