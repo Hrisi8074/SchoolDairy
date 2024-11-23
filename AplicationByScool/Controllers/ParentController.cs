@@ -1,5 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using SchoolDairy.Data.Models;
+
+using SchoolDairy.Models.Parent;
+
 using SchoolDairy.Data;
 using SchoolDairy.Views.Parent;
 using System.Runtime.InteropServices;
@@ -7,6 +10,7 @@ using System.Runtime.InteropServices;
 
 
 namespace SchoolDairy.Web.Controllers
+
 
 {
 
@@ -31,30 +35,43 @@ namespace SchoolDairy.Web.Controllers
         }
         [HttpGet]
         public IActionResult Create()
-        { 
+        {
             return View();
         }
+
         [HttpPost]
-        public IActionResult Create(AddParentValidation parent)
+        public IActionResult Create(Models.Parent.AddParentValidation parent)
         {
             if (!this.ModelState.IsValid)
             {
-             return this.View(parent);
+
+                return this.View(parent);
+
+
+
             }
             Parent parents = new Parent
             {
                 FirstName = parent.FirstName,
                 LastName = parent.LastName,
                 PhoneNumber = parent.PhoneNumber,
-                EmailAddres = parent.EmailAddres,
-                UserNameParent = parent.UserNameParent, 
+
+                EmailAddress = parent.EmailAddres,
+                UserNameParent = parent.UserNameParent,
             };
+
+
+
+
 
 
             this.schoolDairyDbContext.Parents.Add(parents);
             this.schoolDairyDbContext.SaveChanges();
             return this.RedirectToAction(nameof(Index));
         }
+
+
+
         public IActionResult Details(int Id)
         {
             bool IsIdValid = true;
@@ -62,7 +79,7 @@ namespace SchoolDairy.Web.Controllers
             if (!IsIdValid)
             {
                 return RedirectToAction(nameof(Index));
-            } 
+            }
 
             Parent? parents = schoolDairyDbContext
                 .Parents
@@ -72,6 +89,12 @@ namespace SchoolDairy.Web.Controllers
                 return NotFound();
             }
             return View(parents);
+        }
+    }
+}
+    
+
+
         }
     }
 }
